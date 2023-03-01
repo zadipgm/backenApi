@@ -14,6 +14,7 @@ import { SetHeadTag, getHeadTag } from "../controllers/Head.js";
 import { getZadipFormData } from "../controllers/ZadipForm.js";
 const router = express.Router();
 
+router.get("/", getUsers);
 router.get("/users", getUsers);
 router.delete("/delete/:id", deleteUser);
 router.get("/edit/:id", editUser);
