@@ -14,18 +14,20 @@ import { SetHeadTag, getHeadTag } from "../controllers/Head.js";
 import { getZadipFormData } from "../controllers/ZadipForm.js";
 const router = express.Router();
 
-router.get("/", getUsers);
-router.get("/users", getUsers);
-router.delete("/delete/:id", deleteUser);
-router.get("/edit/:id", editUser);
-router.put("/update:id", updateUser);
-router.post("/register", Register);
-router.post("/login", Login);
-router.post("/set_head", SetHeadTag);
-router.get("/get_head", getHeadTag);
-router.get("/get_zadipform", getZadipFormData);
+router.get("/", (req, res) => {
+  res.send("HEY!");
+});
+// router.get("/users", getUsers);
+// router.delete("/delete/:id", deleteUser);
+// router.get("/edit/:id", editUser);
+// router.put("/update:id", updateUser);
+// router.post("/register", Register);
+// router.post("/login", Login);
+// router.post("/set_head", SetHeadTag);
+// router.get("/get_head", getHeadTag);
+// router.get("/get_zadipform", getZadipFormData);
 
-router.get("/token", refreshToken);
-router.delete("/logout", Logout);
+// router.get("/token", refreshToken);
+// router.delete("/logout", Logout);
 
 export default router;
