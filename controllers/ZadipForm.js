@@ -17,3 +17,18 @@ export const getZadipFormData = async (req, res) => {
     console.log(error);
   }
 };
+export const setZadipFormData = async (req, res) => {
+  const { Name, Email, MobileNumber, ServiceName, Page } = req.body;
+  try {
+    await ZadipForm.create({
+      Name: Name,
+      Email: Email,
+      MobileNumber: MobileNumber,
+      ServiceName: ServiceName,
+      Page: Page,
+    });
+    res.json({ message_en: "Request submitted" });
+  } catch (error) {
+    console.log(error);
+  }
+};
