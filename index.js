@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: "https://zadip.sa/",
+    origin: "https://zadip.sa",
   })
 );
 app.use(cookieParser());
