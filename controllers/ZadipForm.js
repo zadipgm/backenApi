@@ -27,8 +27,12 @@ export const setZadipFormData = async (req, res) => {
       ServiceName: ServiceName,
       Page: Page,
     });
-    res.json({ message_en: "Request submitted" });
+    res.json({
+      message_en: "Request submitted",
+      message_ar: "Request submitted",
+    });
   } catch (error) {
+    res.json({ message_en: "Try again", message_ar: "Try again" });
     console.log(error);
   }
 };

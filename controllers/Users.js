@@ -160,7 +160,9 @@ export const Login = async (req, res) => {
     });
     res.json({ accessToken, isLogin: true });
   } catch (error) {
-    res.status(404).json({ message_ar: "Email not found" });
+    res
+      .status(404)
+      .json({ message_ar: "Email not found", message_en: "Email not found" });
   }
 };
 
