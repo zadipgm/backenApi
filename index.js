@@ -9,7 +9,11 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3001", "http://localhost:3000"],
+    origin: [
+      "http://localhost:3001",
+      "http://localhost:3000",
+      "https://zadip-dashboardv2.netlify.app/",
+    ],
   })
 );
 app.use(cookieParser());
