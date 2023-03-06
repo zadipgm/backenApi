@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-const SendEmailToAdmin = (email, mobileNumber, name, service) => {
+const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -79,12 +79,15 @@ const SendEmailToAdmin = (email, mobileNumber, name, service) => {
     // html: `An Email has been sent to the user, Followings are user details:<br> User Email:${email} <br> User Mobile Number:${mobileNumber} <br> User Name:${name}`,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        resolve(info);
+      }
+    });
   });
 };
 export default SendEmailToAdmin;
