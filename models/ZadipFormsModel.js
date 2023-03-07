@@ -23,7 +23,8 @@ const ZadipForm = db.define(
   },
   {
     freezeTableName: true,
-    timestamps: false,
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   }
 );
 
