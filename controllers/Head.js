@@ -20,6 +20,7 @@ export const SetHeadTag = async (req, res) => {
     });
     res.json({ message_en: "Data Added Successfully!" });
   } catch (error) {
+    res.json({ message_en: error, message_en: error });
     console.log(error);
   }
 };
