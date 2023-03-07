@@ -23,6 +23,7 @@ const ZadipForm = db.define(
   },
   {
     freezeTableName: true,
+    timestamps: false,
   }
 );
 
