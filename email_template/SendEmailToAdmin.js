@@ -4,7 +4,7 @@ const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
     service: "gmail",
     auth: {
       user: "shanirawn5@gmail.com",
-      pass: "ockusrdltlsocmmd",
+      pass: "pqsodnkhtncdianh",
     },
   });
 

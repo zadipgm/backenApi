@@ -4,7 +4,7 @@ const SendEmailToUser = async (email, name) => {
     service: "gmail",
     auth: {
       user: "shanirawn5@gmail.com",
-      pass: "ockusrdltlsocmmd",
+      pass: "pqsodnkhtncdianh",
     },
   });
 
