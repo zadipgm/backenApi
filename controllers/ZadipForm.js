@@ -37,7 +37,7 @@ export const setZadipFormData = async (req, res) => {
       SendEmailToUser(Email, Name);
       SendEmailToAdmin(Email, MobileNumber, Name, ServiceName);
     } catch (error) {
-      res.json({ message_en: "Try again", message_ar: "Try again" });
+      res.json({ message_en: error, message_ar: error });
       console.log(error);
     }
   }
