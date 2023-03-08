@@ -10,7 +10,7 @@ const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
 
   var mailOptions = {
     from: "shanirawn5@gmail.com",
-    to: "gm.zadip@gmail.com",
+    to: "info@zadip.com",
     subject: "User Requested for Service",
     html: `<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
       <tr>

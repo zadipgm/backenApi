@@ -26,19 +26,15 @@ export const SetHeadTag = async (req, res) => {
 };
 
 export const getHeadTag = async (req, res) => {
+  let page = req.query.page;
+
   try {
-    const meta = await HeadTag.findAll({
-      attributes: [
-        "id",
-        "Page_Title",
-        "Meta_Name",
-        "Meta_Description",
-        "Meta_Property",
-        "Meta_Property_Description",
-        "Page_Name",
-      ],
+    const user = await HeadTag.findAll({
+      where: {
+        Page_Name: page,
+      },
     });
-    res.json(meta);
+    res.json(user);
   } catch (error) {
     console.log(error);
   }
