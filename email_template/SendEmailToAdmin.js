@@ -3,13 +3,13 @@ const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "shanirawn5@gmail.com",
-      pass: "pqsodnkhtncdianh",
+      user: process.env.EMAIL_SENDER,
+      pass: process.env.EMAIL_SENDER_SECRET,
     },
   });
 
   var mailOptions = {
-    from: "shanirawn5@gmail.com",
+    from: process.env.EMAIL_SENDER,
     to: "info@zadip.com",
     subject: "User Requested for Service",
     html: `<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
@@ -76,7 +76,6 @@ const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
       </tr>
     </table>
   `,
-    // html: `An Email has been sent to the user, Followings are user details:<br> User Email:${email} <br> User Mobile Number:${mobileNumber} <br> User Name:${name}`,
   };
 
   await new Promise((resolve, reject) => {

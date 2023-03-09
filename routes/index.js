@@ -8,13 +8,17 @@ import {
   editUser,
   updateUser,
 } from "../controllers/Users.js";
-import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 import { SetHeadTag, getHeadTag } from "../controllers/Head.js";
 import {
   getZadipFormData,
   setZadipFormData,
 } from "../controllers/ZadipForm.js";
+import {
+  forgotPassword,
+  resetPassword,
+  updatePassword,
+} from "../controllers/Password.js";
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -30,6 +34,9 @@ router.post("/set_head", SetHeadTag);
 router.get("/get_head", getHeadTag);
 router.get("/get_zadipform", getZadipFormData);
 router.post("/zadip_form", setZadipFormData);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
+router.post("/update-password", updatePassword);
 
 router.get("/token", refreshToken);
 router.delete("/logout", Logout);
