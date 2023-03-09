@@ -118,10 +118,11 @@ export const Register = async (req, res) => {
 };
 
 export const Login = async (req, res) => {
+  let userEmail = req.body.Email;
   try {
     const user = await Users.findAll({
       where: {
-        Email: req.body.Email,
+        Email: userEmail,
       },
     });
     const match = await bcrypt.compare(req.body.Password, user[0].Password);
@@ -158,7 +159,7 @@ export const Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ accessToken, isLogin: true });
+    res.json({ accessToken, isLogin: true, email: userEmail });
   } catch (error) {
     res
       .status(404)
