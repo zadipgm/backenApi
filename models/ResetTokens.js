@@ -16,7 +16,7 @@ const ResetToken = db.define(
       type: DataTypes.DATE,
     },
     used: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.TINYINT,
     },
   },
   {
