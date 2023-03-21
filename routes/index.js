@@ -9,7 +9,7 @@ import {
   updateUser,
 } from "../controllers/Users.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
-import { SetHeadTag, getHeadTag } from "../controllers/Head.js";
+import { SetHeadTag, getHeadTag, updateHeadTag } from "../controllers/Head.js";
 import {
   getZadipFormData,
   setZadipFormData,
@@ -32,6 +32,7 @@ router.post("/register", Register);
 router.post("/login", Login);
 router.post("/set_head", SetHeadTag);
 router.get("/get_head", getHeadTag);
+router.put("/updatehead/:id", updateHeadTag);
 router.get("/get_zadipform", getZadipFormData);
 router.post("/zadip_form", setZadipFormData);
 router.post("/forgot-password", forgotPassword);
