@@ -52,7 +52,6 @@ export const updateHeadTag = async (req, res) => {
     Meta_og_description,
     Meta_og_image,
     Page_Name,
-    Allow_All_Pages,
   } = req.body;
   try {
     await HeadTag.update(
@@ -64,7 +63,6 @@ export const updateHeadTag = async (req, res) => {
         Meta_og_description: Meta_og_description,
         Meta_og_image: Meta_og_image,
         Page_Name: Page_Name,
-        Allow_All_Pages: Allow_All_Pages,
       },
       {
         where: {
