@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
 });
 app.use(
   cors({
-    origin: "https://zadip.sa",
+    origin: ["https://zadip.sa", "http://localhost:3000"],
   })
 );
 app.use(cookieParser());
