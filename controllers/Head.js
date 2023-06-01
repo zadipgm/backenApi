@@ -30,16 +30,38 @@ export const SetHeadTag = async (req, res) => {
 };
 
 export const getHeadTag = async (req, res) => {
-  let page = req.query.page;
-  try {
-    const page_tags = await HeadTag.findAll({
-      where: {
-        Page_Name: page,
-      },
-    });
-    res.json(page_tags);
-  } catch (error) {
-    console.log(error);
+  var page = req.query.page;
+  let object = {
+    Page_Title: "",
+    Meta_Description: "",
+    Meta_Keyword_Description: "",
+    Meta_og_title: "",
+    Meta_og_description: "",
+    Meta_og_image: "",
+    Page_Name: page,
+    Allow_All_Pages: "",
+  };
+  if (req.query.page) {
+    page = req.query.page;
+  } else {
+    page = "home";
+  }
+  if (page !== undefined) {
+    try {
+      const page_tags = await HeadTag.findAll({
+        where: {
+          Page_Name: page,
+        },
+      });
+      if (page_tags[0]?.Page_Name === undefined) {
+        res.json([object]);
+        console.log(error);
+      } else {
+        res.json(page_tags);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 export const updateHeadTag = async (req, res) => {
