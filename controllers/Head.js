@@ -49,6 +49,16 @@ export const getHeadTag = async (req, res) => {
   if (page !== undefined) {
     try {
       const page_tags = await HeadTag.findAll({
+        attributes: [
+          "id",
+          "Page_Title",
+          "Meta_Description",
+          "Meta_Keyword_Description",
+          "Meta_og_title",
+          "Meta_og_description",
+          "Meta_og_image",
+          "Page_Name",
+        ],
         where: {
           Page_Name: page,
         },
