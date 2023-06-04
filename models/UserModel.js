@@ -6,26 +6,26 @@ const { DataTypes } = Sequelize;
 const Users = db.define(
   "users",
   {
-    First_Name: {
+    name_en: {
       type: DataTypes.STRING,
     },
-    Last_Name: {
+    name_ar: {
       type: DataTypes.STRING,
     },
-    Email: {
+    nationalID: {
       type: DataTypes.STRING,
     },
-    Password: {
+    email: {
       type: DataTypes.STRING,
     },
-    Confirm_Password: {
+    phoneNumber: {
       type: DataTypes.STRING,
     },
-    Role: {
+    role: {
       type: DataTypes.STRING,
     },
-    refresh_token: {
-      type: DataTypes.TEXT,
+    password: {
+      type: DataTypes.STRING,
     },
   },
   {

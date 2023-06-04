@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export const getUsers = async (req, res) => {
   try {
     const users = await Users.findAll({
-      attributes: ["id", "First_Name", "Last_Name", "Email"],
+      attributes: ["id", "name_en", "name_ar", "email"],
     });
     res.json(users);
   } catch (error) {
@@ -17,7 +17,7 @@ export const editUser = async (req, res) => {
   const id = req.params.id;
   console.log("here s user", id);
   const user = await Users.findOne({
-    attributes: ["First_Name", "Last_Name", "Email"],
+    attributes: ["name_en", "name_ar", "email"],
     where: {
       id: id,
     },
@@ -33,14 +33,13 @@ export const editUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
-  console.log("here s user", id);
-  const { First_Name, Last_Name, Email } = req.body;
+  const { name_en, name_ar, email } = req.body;
   try {
     await Users.update(
       {
-        First_Name: First_Name,
-        Last_Name: Last_Name,
-        Email: Email,
+        name_en: name_en,
+        name_ar: name_ar,
+        email: email,
       },
       {
         where: {
@@ -81,89 +80,60 @@ export const deleteUser = async (req, res) => {
   }
 };
 export const Register = async (req, res) => {
-  const { First_Name, Last_Name, Email, Password, Confirm_Password, Role } =
+  const { name_en, name_ar, email, phoneNumber, nationalID, password, role } =
     req.body;
-  if (Password !== Confirm_Password)
-    return res.status(400).send({
-      message_en: "Password and Confirm Password do not match",
-      message_ar: "Password and Confirm Password do not match",
-    });
-  const user = await Users.findAll({
+
+  const user = await Users.findOne({
     where: {
-      Email: Email,
+      nationalID: nationalID,
     },
   });
-  console.log("here is user", user.length);
-  if (user.length >= 1)
+  if (user === null) {
+    try {
+      await Users.create({
+        name_en: name_en,
+        name_ar: name_ar,
+        nationalID: nationalID,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+        role: role,
+      });
+      res.json({ message_en: "Registration Successful" });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  if (user && user.dataValues.nationalID === nationalID) {
     return res.status(400).send({
-      message_en: "Email Already Exist",
-      message_ar: "Email Already Exist",
+      message_en: "National ID already Exist",
+      message_ar: "National ID Already Exist",
     });
-  const salt = await bcrypt.genSalt();
-  const hashPassword = await bcrypt.hash(Password, salt);
-  const hashConfirmPassword = await bcrypt.hash(Confirm_Password, salt);
-  try {
-    await Users.create({
-      First_Name: First_Name,
-      Last_Name: Last_Name,
-      Email: Email,
-      Password: hashPassword,
-      Confirm_Password: hashConfirmPassword,
-      Role: Role,
-    });
-    res.json({ message_en: "Registration Successful" });
-  } catch (error) {
-    console.log(error);
   }
 };
 
 export const Login = async (req, res) => {
-  let userEmail = req.body.Email;
+  let userEmail = req.body.email;
   try {
     const user = await Users.findAll({
       where: {
-        Email: userEmail,
+        email: userEmail,
       },
     });
-    const match = await bcrypt.compare(req.body.Password, user[0].Password);
+    const match = req.body.password === user[0].password;
+    const matchEmail = userEmail === user[0].email;
 
-    if (!match)
+    if (!match) {
       return res
         .status(400)
         .json({ message_en: "Wrong Password", message_ar: "كلمة مرور خاطئة" });
-    const userId = user[0].id;
-    const email = user[0].Email;
-    const accessToken = jwt.sign(
-      { userId, email },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "15s",
-      }
-    );
-    const refreshToken = jwt.sign(
-      { userId, email },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
-    await Users.update(
-      { refresh_token: refreshToken },
-      {
-        where: {
-          id: userId,
-        },
-      }
-    );
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-    res.json({ accessToken, isLogin: true, email: userEmail });
+    }
+
+    res.json({ isLogin: true, email: userEmail });
   } catch (error) {
     res
-      .status(404)
-      .json({ message_ar: "Email not found", message_en: "Email not found" });
+      .status(400)
+      .json({ message_ar: "Invalid Email", message_en: "Invalid Email" });
   }
 };
 
