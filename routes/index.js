@@ -29,7 +29,7 @@ import {
 import {
   CreateCertificates,
   getCertificates,
-} from "../controllers/certificate.js";
+} from "../controllers/CertificateController.js";
 
 const router = express.Router();
 
