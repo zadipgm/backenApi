@@ -1,4 +1,5 @@
 import HeadTag from "../models/HeadModel.js";
+import HeadAllPAges from "../models/allpagesModel.js";
 export const SetHeadTag = async (req, res) => {
   const {
     Page_Title,
@@ -25,6 +26,31 @@ export const SetHeadTag = async (req, res) => {
     res.json({ message_en: "Head tag Data Added Successfully!" });
   } catch (error) {
     res.json({ message_en: error, message_en: error });
+    console.log(error);
+  }
+};
+// for all pages post
+export const SetHeadAllPages = async (req, res) => {
+  const { all_page_content } = req.body;
+
+  try {
+    await HeadAllPAges.create({
+      all_page_content: all_page_content,
+    });
+    res.json({ message_en: "Head tag Data Added Successfully!" });
+  } catch (error) {
+    res.json({ message_en: error, message_en: error });
+    console.log(error);
+  }
+};
+// for all pages get
+export const getHeadAllPages = async (req, res) => {
+  try {
+    const page_tags = await HeadAllPAges.findAll({
+      attributes: ["id", "all_page_content"],
+    });
+    res.json(page_tags);
+  } catch (error) {
     console.log(error);
   }
 };
@@ -95,6 +121,26 @@ export const updateHeadTag = async (req, res) => {
         Meta_og_description: Meta_og_description,
         Meta_og_image: Meta_og_image,
         Page_Name: Page_Name,
+      },
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+    res.status(200).json({ msg: "Data successfully Updated!" });
+  } catch (msg) {
+    res.status(500).json({ msg: "Oops... an error has occurred!" });
+  }
+};
+
+export const updateHeadTagAllPage = async (req, res) => {
+  const id = req.params.id;
+  const { all_page_content } = req.body;
+  try {
+    await HeadAllPAges.update(
+      {
+        all_page_content,
       },
       {
         where: {

@@ -1,11 +1,17 @@
 import Users from "../models/UserModel.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 export const getUsers = async (req, res) => {
   try {
     const users = await Users.findAll({
-      attributes: ["id", "name_en", "name_ar", "email"],
+      attributes: [
+        "id",
+        "name_en",
+        "name_ar",
+        "email",
+        "gender",
+        "nationalID",
+        "procedures",
+      ],
     });
     res.json(users);
   } catch (error) {
@@ -80,8 +86,16 @@ export const deleteUser = async (req, res) => {
   }
 };
 export const Register = async (req, res) => {
-  const { name_en, name_ar, email, phoneNumber, nationalID, password, role } =
-    req.body;
+  const {
+    name_en,
+    name_ar,
+    email,
+    phoneNumber,
+    nationalID,
+    password,
+    role,
+    gender,
+  } = req.body;
 
   const user = await Users.findOne({
     where: {
@@ -97,6 +111,7 @@ export const Register = async (req, res) => {
         email: email,
         phoneNumber: phoneNumber,
         password: password,
+        gender: gender,
         role: role,
       });
       res.json({ message_en: "Registration Successful" });

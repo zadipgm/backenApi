@@ -3,31 +3,22 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const Users = db.define(
-  "users",
+const Certificates = db.define(
+  "certificate",
   {
-    name_en: {
+    name: {
       type: DataTypes.STRING,
     },
-    name_ar: {
+    certificate_number: {
       type: DataTypes.STRING,
     },
     nationalID: {
       type: DataTypes.STRING,
     },
-    email: {
-      type: DataTypes.STRING,
-    },
-    phoneNumber: {
-      type: DataTypes.STRING,
-    },
     gender: {
       type: DataTypes.STRING,
     },
-    role: {
-      type: DataTypes.STRING,
-    },
-    password: {
+    expiry_date: {
       type: DataTypes.STRING,
     },
   },
@@ -40,4 +31,4 @@ const Users = db.define(
   await db.sync();
 })();
 
-export default Users;
+export default Certificates;
