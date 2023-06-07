@@ -49,3 +49,38 @@ export const CreateCertificates = async (req, res) => {
     });
   }
 };
+export const deleteCertificate = async (req, res) => {
+  const nationalID = req.params.id;
+
+  const certificate = await Certificates.findOne({
+    where: {
+      nationalID: nationalID,
+    },
+  });
+
+  if (!certificate) {
+    res.status(404).json({
+      message_en: "Certificate not found!",
+      message_ar: "Certificate not found!",
+    });
+    return;
+  }
+
+  try {
+    await Certificates.destroy({
+      where: {
+        nationalID: nationalID,
+      },
+    });
+
+    res.status(200).json({
+      message_en: "Certificate successfully deleted!",
+      message_ar: "Certificate successfully deleted!",
+    });
+  } catch (msg) {
+    res.status(500).json({
+      message_en: "Oops... an error has occurred!",
+      message_ar: "Oops... an error has occurred!",
+    });
+  }
+};

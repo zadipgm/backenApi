@@ -9,6 +9,7 @@ export const getUsers = async (req, res) => {
         "name_ar",
         "email",
         "gender",
+        "role",
         "nationalID",
         "procedures",
       ],

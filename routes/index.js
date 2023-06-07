@@ -28,6 +28,7 @@ import {
 } from "../controllers/Password.js";
 import {
   CreateCertificates,
+  deleteCertificate,
   getCertificates,
 } from "../controllers/CertificateController.js";
 
@@ -55,6 +56,7 @@ router.post("/reset-password", resetPassword);
 router.post("/update-password", updatePassword);
 router.post("/create_certificate", CreateCertificates);
 router.get("/certificates", getCertificates);
+router.delete("/delete_certificate/:id", deleteCertificate);
 
 router.get("/token", refreshToken);
 router.delete("/logout", Logout);
