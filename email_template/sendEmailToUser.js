@@ -1,17 +1,19 @@
 import nodemailer from "nodemailer";
 const SendEmailToUser = async (email, name) => {
   var transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.accountsupport.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_SENDER,
-      pass: process.env.EMAIL_SENDER_SECRET,
+      pass: "000@ZadipGroup#000",
     },
   });
 
   var mailOptions = {
     from: process.env.EMAIL_SENDER,
     to: email,
-    subject: "Requested for Service",
+    subject: "Welcome to the ZADIP Group",
     html: `<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
           <tr>
             <td align="center" style="padding:0;">
@@ -29,7 +31,7 @@ const SendEmailToUser = async (email, name) => {
                           <h2 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Dear ${name},</h2>
                           <h2 style="font-size:22px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Thank you for contacting us!</h2>
                           <h3 style="font-size:20px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Our sales representative will get back to you as soon as possible.</h3>
-                          <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> Founded in 2004, ZADIP has expanded from a small business to a multi-industry enterprise with operational teams in ICT, Networking, Software Development, Construction and Advertising. Our rapid expansion was only possible through the trust and support our customers put in our abilities. .</p>
+                          <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> Founded in 2004, ZADIP has expanded from a small business to a multi-industry enterprise with operational teams in ICT, Networking, Software Development, Construction and Advertising. Our rapid expansion was only possible through the trust and support our customers put in our abilities.</p>
                         </td>
                       </tr>
                     </table>

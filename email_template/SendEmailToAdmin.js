@@ -1,10 +1,12 @@
 import nodemailer from "nodemailer";
 const SendEmailToAdmin = async (email, mobileNumber, name, service) => {
   var transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.accountsupport.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_SENDER,
-      pass: process.env.EMAIL_SENDER_SECRET,
+      pass: "000@ZadipGroup#000",
     },
   });
 
