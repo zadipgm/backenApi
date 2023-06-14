@@ -22,6 +22,9 @@ const HeadTag = db.define(
     Meta_og_image: {
       type: DataTypes.STRING,
     },
+    Meta_og_Url: {
+      type: DataTypes.STRING,
+    },
     Page_Name: {
       type: DataTypes.STRING,
     },

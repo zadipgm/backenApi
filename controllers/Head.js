@@ -10,6 +10,7 @@ export const SetHeadTag = async (req, res) => {
     Meta_og_image,
     Page_Name,
     Allow_All_Pages,
+    Meta_og_Url,
   } = req.body;
 
   try {
@@ -20,6 +21,7 @@ export const SetHeadTag = async (req, res) => {
       Meta_og_title: Meta_og_title,
       Meta_og_description: Meta_og_description,
       Meta_og_image: Meta_og_image,
+      Meta_og_Url: Meta_og_Url,
       Page_Name: Page_Name,
       Allow_All_Pages: Allow_All_Pages,
     });
@@ -66,6 +68,7 @@ export const getHeadTag = async (req, res) => {
     Meta_og_image: "",
     Page_Name: page,
     Allow_All_Pages: "",
+    Meta_og_Url: "",
   };
   if (req.query.page) {
     page = req.query.page;
@@ -83,6 +86,7 @@ export const getHeadTag = async (req, res) => {
           "Meta_og_title",
           "Meta_og_description",
           "Meta_og_image",
+          "Meta_og_Url",
           "Page_Name",
         ],
         where: {
@@ -110,6 +114,7 @@ export const updateHeadTag = async (req, res) => {
     Meta_og_description,
     Meta_og_image,
     Page_Name,
+    Meta_og_Url,
   } = req.body;
   try {
     await HeadTag.update(
@@ -121,6 +126,7 @@ export const updateHeadTag = async (req, res) => {
         Meta_og_description: Meta_og_description,
         Meta_og_image: Meta_og_image,
         Page_Name: Page_Name,
+        Meta_og_Url: Meta_og_Url,
       },
       {
         where: {
