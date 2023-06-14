@@ -2,11 +2,16 @@ import HeadTag from "../models/HeadModel.js";
 import HeadAllPAges from "../models/allpagesModel.js";
 export const SetHeadTag = async (req, res) => {
   const {
-    Page_Title,
-    Meta_Description,
-    Meta_Keyword_Description,
-    Meta_og_title,
-    Meta_og_description,
+    Page_Title_en,
+    Page_Title_ar,
+    Meta_Description_en,
+    Meta_Description_ar,
+    Meta_Keyword_Description_en,
+    Meta_Keyword_Description_ar,
+    Meta_og_title_en,
+    Meta_og_title_ar,
+    Meta_og_description_en,
+    Meta_og_description_ar,
     Meta_og_image,
     Page_Name,
     Allow_All_Pages,
@@ -15,11 +20,16 @@ export const SetHeadTag = async (req, res) => {
 
   try {
     await HeadTag.create({
-      Page_Title: Page_Title,
-      Meta_Description: Meta_Description,
-      Meta_Keyword_Description: Meta_Keyword_Description,
-      Meta_og_title: Meta_og_title,
-      Meta_og_description: Meta_og_description,
+      Page_Title_en: Page_Title_en,
+      Page_Title_ar: Page_Title_ar,
+      Meta_Description_en: Meta_Description_en,
+      Meta_Description_ar: Meta_Description_ar,
+      Meta_Keyword_Description_en: Meta_Keyword_Description_en,
+      Meta_Keyword_Description_ar: Meta_Keyword_Description_ar,
+      Meta_og_title_en: Meta_og_title_en,
+      Meta_og_title_ar: Meta_og_title_ar,
+      Meta_og_description_en: Meta_og_description_en,
+      Meta_og_description_ar: Meta_og_description_ar,
       Meta_og_image: Meta_og_image,
       Meta_og_Url: Meta_og_Url,
       Page_Name: Page_Name,
@@ -60,14 +70,18 @@ export const getHeadAllPages = async (req, res) => {
 export const getHeadTag = async (req, res) => {
   var page = req.query.page;
   let object = {
-    Page_Title: "",
-    Meta_Description: "",
-    Meta_Keyword_Description: "",
-    Meta_og_title: "",
-    Meta_og_description: "",
+    Page_Title_en: "",
+    Page_Title_ar: "",
+    Meta_Description_en: "",
+    Meta_Description_ar: "",
+    Meta_Keyword_Description_en: "",
+    Meta_Keyword_Description_ar: "",
+    Meta_og_title_en: "",
+    Meta_og_title_ar: "",
+    Meta_og_description_en: "",
+    Meta_og_description_ar: "",
     Meta_og_image: "",
     Page_Name: page,
-    Allow_All_Pages: "",
     Meta_og_Url: "",
   };
   if (req.query.page) {
@@ -80,11 +94,16 @@ export const getHeadTag = async (req, res) => {
       const page_tags = await HeadTag.findAll({
         attributes: [
           "id",
-          "Page_Title",
-          "Meta_Description",
-          "Meta_Keyword_Description",
-          "Meta_og_title",
-          "Meta_og_description",
+          "Page_Title_en",
+          "Page_Title_ar",
+          "Meta_Description_en",
+          "Meta_Description_ar",
+          "Meta_Keyword_Description_en",
+          "Meta_Keyword_Description_ar",
+          "Meta_og_title_en",
+          "Meta_og_title_ar",
+          "Meta_og_description_en",
+          "Meta_og_description_ar",
           "Meta_og_image",
           "Meta_og_Url",
           "Page_Name",
@@ -107,11 +126,16 @@ export const getHeadTag = async (req, res) => {
 export const updateHeadTag = async (req, res) => {
   const id = req.params.id;
   const {
-    Page_Title,
-    Meta_Description,
-    Meta_Keyword_Description,
-    Meta_og_title,
-    Meta_og_description,
+    Page_Title_en,
+    Page_Title_ar,
+    Meta_Description_en,
+    Meta_Description_ar,
+    Meta_Keyword_Description_en,
+    Meta_Keyword_Description_ar,
+    Meta_og_title_en,
+    Meta_og_title_ar,
+    Meta_og_description_en,
+    Meta_og_description_ar,
     Meta_og_image,
     Page_Name,
     Meta_og_Url,
@@ -119,14 +143,19 @@ export const updateHeadTag = async (req, res) => {
   try {
     await HeadTag.update(
       {
-        Page_Title: Page_Title,
-        Meta_Description: Meta_Description,
-        Meta_Keyword_Description: Meta_Keyword_Description,
-        Meta_og_title: Meta_og_title,
-        Meta_og_description: Meta_og_description,
+        Page_Title_en: Page_Title_en,
+        Page_Title_ar: Page_Title_ar,
+        Meta_Description_en: Meta_Description_en,
+        Meta_Description_ar: Meta_Description_ar,
+        Meta_Keyword_Description_en: Meta_Keyword_Description_en,
+        Meta_Keyword_Description_ar: Meta_Keyword_Description_ar,
+        Meta_og_title_en: Meta_og_title_en,
+        Meta_og_title_ar: Meta_og_title_ar,
+        Meta_og_description_en: Meta_og_description_en,
+        Meta_og_description_ar: Meta_og_description_ar,
         Meta_og_image: Meta_og_image,
-        Page_Name: Page_Name,
         Meta_og_Url: Meta_og_Url,
+        Page_Name: Page_Name,
       },
       {
         where: {

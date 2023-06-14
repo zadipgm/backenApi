@@ -4,19 +4,34 @@ const { DataTypes } = Sequelize;
 const HeadTag = db.define(
   "head_tag",
   {
-    Page_Title: {
+    Page_Title_en: {
       type: DataTypes.STRING,
     },
-    Meta_Description: {
+    Page_Title_ar: {
       type: DataTypes.STRING,
     },
-    Meta_Keyword_Description: {
+    Meta_Description_en: {
       type: DataTypes.STRING,
     },
-    Meta_og_title: {
+    Meta_Description_ar: {
       type: DataTypes.STRING,
     },
-    Meta_og_description: {
+    Meta_Keyword_Description_en: {
+      type: DataTypes.STRING,
+    },
+    Meta_Keyword_Description_ar: {
+      type: DataTypes.STRING,
+    },
+    Meta_og_title_en: {
+      type: DataTypes.STRING,
+    },
+    Meta_og_title_ar: {
+      type: DataTypes.STRING,
+    },
+    Meta_og_description_en: {
+      type: DataTypes.STRING,
+    },
+    Meta_og_description_ar: {
       type: DataTypes.STRING,
     },
     Meta_og_image: {
