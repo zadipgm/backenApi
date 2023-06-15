@@ -63,24 +63,23 @@ export const deleteCertificate = async (req, res) => {
       message_en: "Certificate not found!",
       message_ar: "Certificate not found!",
     });
-    return;
-  }
+  } else {
+    try {
+      await Certificates.destroy({
+        where: {
+          nationalID: nationalID,
+        },
+      });
 
-  try {
-    await Certificates.destroy({
-      where: {
-        nationalID: nationalID,
-      },
-    });
-
-    res.status(200).json({
-      message_en: "Certificate successfully deleted!",
-      message_ar: "Certificate successfully deleted!",
-    });
-  } catch (msg) {
-    res.status(500).json({
-      message_en: "Oops... an error has occurred!",
-      message_ar: "Oops... an error has occurred!",
-    });
+      res.status(200).json({
+        message_en: "Certificate successfully deleted!",
+        message_ar: "Certificate successfully deleted!",
+      });
+    } catch (msg) {
+      res.status(500).json({
+        message_en: "Oops... an error has occurred!",
+        message_ar: "Oops... an error has occurred!",
+      });
+    }
   }
 };
