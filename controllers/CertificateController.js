@@ -67,7 +67,7 @@ export const deleteCertificate = async (req, res) => {
     try {
       await Certificates.destroy({
         where: {
-          nationalID: nationalID,
+          nationalID: nationalID.trim(),
         },
       });
 
