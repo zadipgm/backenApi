@@ -11,6 +11,7 @@ export const getUsers = async (req, res) => {
         "gender",
         "role",
         "nationalID",
+        "phoneNumber",
         "procedures",
       ],
     });
@@ -39,18 +40,19 @@ export const editUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const id = req.params.id;
-  const { name_en, name_ar, email } = req.body;
+  const ID = req.params.id;
+  const { name_en, name_ar, email, phoneNumber } = req.body;
   try {
     await Users.update(
       {
         name_en: name_en,
         name_ar: name_ar,
         email: email,
+        phoneNumber: phoneNumber,
       },
       {
         where: {
-          id: id,
+          nationalID: ID,
         },
       }
     );
@@ -61,11 +63,11 @@ export const updateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-  const id = req.params.id;
+  const nationalID = req.params.id;
 
   const user = await Users.findOne({
     where: {
-      id: id,
+      nationalID: nationalID,
     },
   });
 
@@ -77,7 +79,7 @@ export const deleteUser = async (req, res) => {
   try {
     await Users.destroy({
       where: {
-        id: id,
+        nationalID: nationalID,
       },
     });
 
