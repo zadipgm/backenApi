@@ -10,7 +10,6 @@ export const getCertificates = async (req, res) => {
         "nationalID",
         "gender",
         "expiry_date",
-        "procedures",
       ],
     });
     res.json(certificate);

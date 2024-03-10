@@ -1,4 +1,5 @@
 import Users from "../models/UserModel.js";
+import jwt from "jsonwebtoken";
 
 export const getUsers = async (req, res) => {
   try {
@@ -12,7 +13,6 @@ export const getUsers = async (req, res) => {
         "role",
         "nationalID",
         "phoneNumber",
-        "procedures",
       ],
     });
     res.json(users);
@@ -139,6 +139,7 @@ export const Login = async (req, res) => {
       },
     });
     const match = req.body.password === user[0].password;
+    const username = user[0].name_en;
     const matchEmail = userEmail === user[0].email;
 
     if (!match) {
@@ -146,8 +147,13 @@ export const Login = async (req, res) => {
         .status(400)
         .json({ message_en: "Wrong Password", message_ar: "كلمة مرور خاطئة" });
     }
-
-    res.json({ isLogin: true, email: userEmail });
+    const token = jwt.sign({ username }, "secret_key", { expiresIn: "1h" });
+    res.json({
+      isLogin: true,
+      email: userEmail,
+      name_en: username,
+      token: token,
+    });
   } catch (error) {
     res
       .status(400)
